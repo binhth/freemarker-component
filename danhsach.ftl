@@ -22,5 +22,10 @@ data.results: mảng json, list object
   //iteratorParamater tham số ( link API + tham số được sử dụng trong file pagination.ftl )
   //5 số lượng bản ghi hiển thị ( deltal )
   //"#mainDanhSachVB" ID của thẻ wrap nội dung danh sách + phân trang
-	<@pagination.pages 1..(data.total/5) cur "subject" iteratorAPIURL iteratorParamater 5 "#mainDanhSachVB"/>
+  
+    <@liferay_portlet.renderURL var="mainListURL" windowState="exclusive">
+		<@liferay_portlet.param name="mvcPath" value="/templates/danhsach/ajax/viewContent.ftl" />
+	</@liferay_portlet.renderURL>
+	
+	<@pagination.pages 1..(data.total/5) cur "subject" iteratorAPIURL iteratorParamater 5 "#mainDanhSachVB" mainListURL/>
 </div>
