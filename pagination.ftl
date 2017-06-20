@@ -5,7 +5,7 @@
     <#if (x<y)><#return x><#else><#return y></#if>
 </#function>
 
-<#macro pages totalPages p order apiURL jsonParamater delta containerId>
+<#macro pages totalPages p order apiURL jsonParamater delta containerId templateFTL>
 
      <#assign size = totalPages?size>
     <ul class="pagination M0">
@@ -36,9 +36,6 @@
     
     </ul>
     
-    <@liferay_portlet.renderURL var="mainListURL" windowState="exclusive">
-		<@liferay_portlet.param name="mvcPath" value="/templates/danhsach/ajax/viewContent.ftl" />
-	</@liferay_portlet.renderURL>
 
 <script type="text/javascript">
 
@@ -67,7 +64,7 @@
 			.done(function( data ) {
 				$.ajax({
 					method: "POST",
-					url: "${mainListURL}",
+					url: "${templateFTL}",
 					data: {
 						data: JSON.stringify(data),
 						cur: curent
